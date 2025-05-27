@@ -346,6 +346,13 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+-- Индекс для фильтрации по IS_DEL и StatusId
+CREATE NONCLUSTERED INDEX idx_IS_DEL_StatusId ON dbo.Works (IS_DEL, StatusId);
+
+-- Индекс для улучшения производительности сортировки по id_work
+CREATE NONCLUSTERED INDEX idx_id_work ON dbo.Works (id_work);
+
 /****** Object:  Table [dbo].[WorkStatus]    Script Date: 28.04.2024 19:21:25 ******/
 SET ANSI_NULLS ON
 GO
